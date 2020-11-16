@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+    <!-- JS -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+            integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+            crossorigin="anonymous"></script>
+
+    <style>
+        html, body {
+            background-color: #135438;
+            color: #fff;
+            height: 100%;
+            margin: 0;
+        }
+
+        #wrap {
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        #search_container {
+            display: flex;
+            width: 45%;
+            font-size: 18px;
+            margin: 30px auto 0;
+            background-color: #fff;
+            border-radius: 30px;
+        }
+
+        .input-lg {
+            height: 44px;
+            padding: 10px 5px;
+            margin-left: 33px;
+            font-size: 18px;
+            line-height: 1.3333333;
+            background-color: transparent;
+            border: none;
+            border-radius: 25px;
+            width: 90%;
+        }
+
+        .search_icon {
+            background-image: url("/static/search_icon.jpg");
+            background-repeat: no-repeat;
+            background-position: 2px 3px;
+        }
+    </style>
+
+
+    <script>
+        $(document).ready(function () {
+            $("#search-input").keydown(function (key) {
+                if (key.keyCode == 13) {
+                    search_enter()
+                }
+            });
+        });
+
+        function search_enter(){
+            let input = $("#search-input").val()
+            alert(input)
+        }
+
+    </script>
+
+</head>
+<body>
+
+<div id="wrap">
+    <div class="title_container">
+        <h1 class="title text-center">What's your Major? 🤔</h1>
+    </div>
+
+    <section id="search_container">
+        <label for="search-input"><i class="fa fa-search" aria-hidden="true"></i></label>
+        <input class="input-lg" id="search-input" placeholder="전공을 입력해주세요"
+               onfocus="this.placeholder=''" onblur="this.placeholder='전공을 입력해주세요'"
+               spellcheck="false" autocorrect="off" autocomplete="off" tabindex="1">
+    </section>
+
+</div>
+</div>
+</body>
+</html>
