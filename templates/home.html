@@ -1,30 +1,6 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-
-    <!-- JS -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
-            integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
-            crossorigin="anonymous"></script>
-
+{% include './part/head.html' %}
     <style>
-        html, body {
-            background-color: #135438;
-            color: #fff;
-            height: 100%;
-            margin: 0;
-        }
 
-        #wrap {
-            height: 100%;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-        }
 
         #search_container {
             display: flex;
@@ -54,21 +30,24 @@
         }
     </style>
 
-
-    <script>
+<script>
         $(document).ready(function () {
             $("#search-input").keydown(function (key) {
-                if (key.keyCode == 13) {
+                if (key.keyCode === 13) {
                     search_enter()
                 }
             });
         });
 
-        function search_enter(){
+        function search_enter() {
             let input = $("#search-input").val()
-            alert(input)
-        }
 
+            if (input === '') {
+                alert("값을 입력해주세요")
+            } else {
+                window.location.href = '/listPage?major='+input
+            }
+        }
     </script>
 
 </head>
@@ -87,6 +66,6 @@
     </section>
 
 </div>
-</div>
-</body>
-</html>
+
+{% include './part/footer.html' %}
+
