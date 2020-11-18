@@ -1,10 +1,113 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>$Title$</title>
+{% include './part/head.html' %}
+
+<style>
+    .text_container {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: flex-start;
+        width: 55%;
+        min-height: 20%;
+        margin: 100px 0px 40px 0px;
+    }
+
+    .card_container {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        width: 55%;
+        padding: 8px;
+        margin-bottom: 100px;
+    }
+
+    .card {
+        height: 50%;
+        border-radius: 15px;
+        box-shadow: -1px 2px 4px rgba(0, 0, 0, .25), 1px 1px 3px rgba(0, 0, 0, .1);
+        margin-bottom: 8px;
+        padding: 15px;
+        width: 100%;
+        height: 100px;
+        background-color: white;
+    }
+
+    .card-row {
+        display: -webkit-flex;
+        display: flex;
+    }
+
+    .card-text-content {
+        width: 192px;
+        color: #135438;
+    }
+
+    .card-head {
+        width: 400px;
+        font-size: 24px;
+        margin-top: 15px;
+    }
+
+    #title_span {
+        font-size: 45px;
+    }
+
+
+</style>
+
+<script>
+    $(document).ready(function () {
+        let major = $('#major').attr('content')
+        console.log(major)
+        $.ajax({
+            type: "POST",
+            url: "/result",
+            data: {
+                "major_give": major
+            },
+            success: function (response) {
+                if (response["result"] === "success") {
+                    let datas = response['data']
+                    if (datas[i]['division'] == '') {
+
+                    } else {
+                        for (let i = 0; i < datas.length; i++) {
+                            let data = datas[i]
+
+                            let certi = data['certi']
+
+                            let temp = `<div class="card card-row ">
+                                        <div class="card-text-content">
+                                            <p class="card-head">${certi}</p>
+                                            <p>Ellie Goulding</p>
+                                        </div>
+                                    </div>`
+
+                            $('.card_container').append(temp)
+                        }
+                    }
+
+                }
+            }
+        })
+    })
+</script>
+
 </head>
 <body>
-$END$
-</body>
-</html>
+<div id="wrap">
+    <meta id="major" content="{{major}}">
+    <div class="text_container">
+        <div>
+            <h2><span id="title_span">'{{major}}'</span> 와<br>관련된 자격증을 보여드릴게요! 💡</h2>
+        </div>
+    </div>
+
+    <div class="card_container">
+    </div>
+
+    <div class="'"
+
+</div>
+
+{% include './part/footer.html' %}
