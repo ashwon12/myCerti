@@ -1,6 +1,10 @@
 {% include './part/head.html' %}
 
 <style>
+
+    #wrap{
+        background-color: #1F2739;
+    }
     .text_container {
         display: flex;
         flex-direction: column;
@@ -17,6 +21,7 @@
         justify-content: center;
         align-items: center;
         width: 55%;
+        min-height: 80%;
         padding: 8px;
         margin-bottom: 100px;
     }
@@ -39,7 +44,7 @@
 
     .card-text-content {
         width: 192px;
-        color: #135438;
+        color: #1F2739;
     }
 
     .card-head {
@@ -57,8 +62,12 @@
 
 <script>
     $(document).ready(function () {
+        get_data()
+
+    })
+
+    function get_data() {
         let major = $('#major').attr('content')
-        console.log(major)
         $.ajax({
             type: "POST",
             url: "/result",
@@ -68,29 +77,34 @@
             success: function (response) {
                 if (response["result"] === "success") {
                     let datas = response['data']
-                    if (datas[i]['division'] == '') {
 
-                    } else {
-                        for (let i = 0; i < datas.length; i++) {
-                            let data = datas[i]
-
-                            let certi = data['certi']
-
-                            let temp = `<div class="card card-row ">
-                                        <div class="card-text-content">
+                    for (let i = 0; i < datas.length; i++) {
+                        let data = datas[i]
+                        let certi = data['certi']
+                        let temp = `<div class="card card-row ">
+                                        <div class="card-text-content ">
                                             <p class="card-head">${certi}</p>
-                                            <p>Ellie Goulding</p>
+                                            <p class="go_detail" ><img src="../static/arrow.png " width="20" height="20" > Click!</p>
                                         </div>
                                     </div>`
-
-                            $('.card_container').append(temp)
-                        }
+                        $('.card_container').append(temp)
+                        go_detail()
                     }
 
                 }
             }
         })
-    })
+    }
+
+    function go_detail() {
+        $(".go_detail").click(function () {
+            let p = $(this)
+            let siblings = p.siblings().text()
+            window.location.href = '/detailPage?certi='+siblings
+        });
+    }
+
+
 </script>
 
 </head>
@@ -102,12 +116,15 @@
             <h2><span id="title_span">'{{major}}'</span> 와<br>관련된 자격증을 보여드릴게요! 💡</h2>
         </div>
     </div>
-
     <div class="card_container">
+        <table border="0">
+            <tr>
+                <td>
+
+                </td>
+            </tr>
+        </table>
     </div>
-
-    <div class="'"
-
 </div>
 
 {% include './part/footer.html' %}
