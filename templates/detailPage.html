@@ -1,0 +1,124 @@
+{% include './part/head.html' %}
+
+<style>
+
+    #wrap {
+        background-color: #1F2739;
+    }
+
+    #title_span {
+        font-size: 40px;
+    }
+
+    .text_container {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: flex-start;
+        width: 55%;
+        min-height: 20%;
+        margin: 100px 0px 40px 0px;
+    }
+
+    .container td {
+        -webkit-box-shadow: 0 2px 2px -2px #0E1119;
+        -moz-box-shadow: 0 2px 2px -2px #0E1119;
+        box-shadow: 0 2px 2px -2px #0E1119;
+        color: #1F2739;
+        border-radius: 2px;
+    }
+
+    .container {
+        text-align: center;
+        overflow: hidden;
+        width: 55%;
+        display: table;
+        min-height: 80%;
+        padding: 8px;
+        margin-bottom: 100px;
+    }
+
+    td, th {
+        padding-bottom: 2%;
+        padding-top: 2%;
+    }
+
+    .container tr:nth-child(odd) {
+        background-color: #f7f7f7;
+    }
+
+    .container tr:nth-child(even) {
+        background-color: #e6e6e6;
+    }
+
+    .container th {
+        background-color: #1F2739;
+        color: #FB667A;
+    }
+
+
+    .container tr:hover {
+        background-color: #464A52;
+        -webkit-box-shadow: 0 6px 6px -6px #0E1119;
+        -moz-box-shadow: 0 6px 6px -6px #0E1119;
+        box-shadow: 0 6px 6px -6px #0E1119;
+    }
+
+
+</style>
+</head>
+
+<body>
+<div id="wrap">
+    <meta id="certi" content="{{certi}}">
+    <div class="text_container">
+        <div>
+            <h2><span id="title_span">'{{certi}}'</span> 의<br>시험 일정과 시험 후기를 알려드릴께요! 🙌</h2>
+        </div>
+    </div>
+    <table class="container">
+        <thead>
+        <tr>
+            <th><h4>구분</h4></th>
+            <th><h4>필기접수</h4></th>
+            <th><h4>필기시험</h4></th>
+            <th><h4>필기결과발표</h4></th>
+            <th><h4>실기접수</h4></th>
+            <th><h4>실기시험</h4></th>
+            <th><h4>실기결과발표</h4></th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <td></td>
+            <td>4623</td>
+            <td>3486</td>
+            <td>00:31:52</td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td>4623</td>
+            <td>3486</td>
+            <td>00:31:52</td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td>4623</td>
+            <td>3486</td>
+            <td>00:31:52</td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+        </tbody>
+    </table>
+
+</div>
+
+{% include './part/footer.html' %}
