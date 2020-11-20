@@ -19,6 +19,12 @@ def listPage():
     return render_template('listPage.html', major=major)
 
 
+@app.route('/detailPage')
+def detailPage():
+    certi = request.args.get('certi')
+    return render_template('detailPage.html', certi=certi)
+
+
 # 검색 결과를 보여준다.
 @app.route('/result', methods=['POST'])
 def result_post():
