@@ -14,13 +14,13 @@ def home():
 
 
 @app.route('/listPage')
-def listPage():
+def list_page():
     major = request.args.get('major')
     return render_template('listPage.html', major=major)
 
 
 @app.route('/detailPage')
-def detailPage():
+def detail_page():
     certi = request.args.get('certi')
     return render_template('detailPage.html', certi=certi)
 
@@ -34,8 +34,16 @@ def result_post():
     results = []
     for result in search_result:
         results.append(result)
-
     return jsonify({'result': 'success', 'data': results})
+
+
+# 클릭한 자격증의 세부내용을 보여준다.
+@app.route('/detailCerti', methods=['POST'])
+def detail_certi():
+    detail_certi = request.form['certi_give']
+    data = db.certificate.find_one({'certi': detail_certi}, {'_id': False})
+
+    return jsonify({'result': 'success','data': data})
 
 
 if __name__ == '__main__':

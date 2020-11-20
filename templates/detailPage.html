@@ -66,6 +66,60 @@
 
 
 </style>
+
+<script>
+    $(document).ready(function () {
+        get_data()
+    })
+
+    function get_data() {
+        let certi = $('#certi').attr('content')
+        $.ajax({
+            type: "POST",
+            url: "/detailCerti",
+            data: {
+                "certi_give": certi
+            },
+            success: function (response) {
+                if (response["result"] === "success") {
+                    let detail_certi = response['data']
+                    let division = detail_certi['division']
+
+                    for (let i = 0; i < division.length; i++) {
+                        let PT_Application = detail_certi['PT_Application'][i]
+                        let PT_Exam = detail_certi['PT_Exam'][i]
+                        let PT_Pass = detail_certi['PT_Pass'][i]
+                        let WT_Application = detail_certi['WT_Application'][i]
+                        let WT_Exam = detail_certi['WT_Exam'][i]
+                        let WT_Pass = detail_certi['WT_Pass'][i]
+
+
+                        let temp = `<tr>
+                                        <td>${i + 1}</td>
+                                        <td>${PT_Application}</td>
+                                        <td>${PT_Exam}</td>
+                                        <td>${PT_Pass}</td>
+                                        <td>${WT_Application}</td>
+                                        <td>${WT_Exam}</td>
+                                        <td>${WT_Pass}</td>
+                                    </tr>`
+                        $('tbody').append(temp)
+                    }
+                }
+            }
+        })
+    }
+
+    var isEmpty = function (value) {
+        if (value == "" || value == null || value == undefined || (value != null && typeof value == "object" && !Object.keys(value).length)) {
+            return true
+        } else {
+            return false
+        }
+    };
+
+
+</script>
 </head>
 
 <body>
@@ -88,34 +142,7 @@
             <th><h4>실기결과발표</h4></th>
         </tr>
         </thead>
-        <tbody>
-        <tr>
-            <td></td>
-            <td>4623</td>
-            <td>3486</td>
-            <td>00:31:52</td>
-            <td></td>
-            <td></td>
-            <td></td>
-        </tr>
-        <tr>
-            <td></td>
-            <td>4623</td>
-            <td>3486</td>
-            <td>00:31:52</td>
-            <td></td>
-            <td></td>
-            <td></td>
-        </tr>
-        <tr>
-            <td></td>
-            <td>4623</td>
-            <td>3486</td>
-            <td>00:31:52</td>
-            <td></td>
-            <td></td>
-            <td></td>
-        </tr>
+        <tbody class="tr_container">
         </tbody>
     </table>
 
