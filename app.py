@@ -1,31 +1,35 @@
 from flask import Flask, render_template, jsonify, request
 from pymongo import MongoClient
+import requests
+
 
 app = Flask(__name__)
 
-client = MongoClient('localhost', 27017)  # mongoDB는 27017 포트로 돌아갑니다.
-db = client.myCerti  # 'dbsparta'라는 이름의 db를 만듭니다.
+client = MongoClient('localhost', 27017)
+db = client.myCerti
 
 
-# 처음 시작할 때 호출
+# 홈 화면, 첫번째 화면
 @app.route('/')
 def home():
     return render_template('home.html')
 
 
+# 두번째 화면
 @app.route('/listPage')
 def list_page():
     major = request.args.get('major')
     return render_template('listPage.html', major=major)
 
 
+# 세번째 화면
 @app.route('/detailPage')
 def detail_page():
     certi = request.args.get('certi')
     return render_template('detailPage.html', certi=certi)
 
 
-# 검색 결과를 보여준다.
+# DB에서 검색 결과를 가져오는 API
 @app.route('/result', methods=['POST'])
 def result_post():
     keyword = request.form['major_give']
@@ -37,13 +41,36 @@ def result_post():
     return jsonify({'result': 'success', 'data': results})
 
 
-# 클릭한 자격증의 세부내용을 보여준다.
+# 네이버 블로그 리뷰를 가져와주는 API
+@app.route('/reviewData', methods=['POST'])
+def reviewData():
+    detail_certis = request.form['certi_give']
+    print(detail_certis)
+    headers = {
+        'X-Naver-Client-Id': '1cZPXGnFs7VpBH7STTrV',
+        'X-Naver-Client-Secret': 'O6T5Wih5G5',
+    }
+    params = {
+        'query': detail_certis + ' 후기',
+        'display': '5',
+        'start': '1',
+        'sort': 'sim',
+    }
+
+    response1 = requests.get('https://openapi.naver.com/v1/search/blog.json', headers=headers, params=params)
+    response2 = requests.get('https://openapi.naver.com/v1/search/cafearticle.json',headers=headers, params=params)
+    blog_review = response1.json()
+    cafe_review = response2.json()
+    return jsonify({'result': 'success', 'blogData' : blog_review,'cafeData':cafe_review})
+
+
+# DB에서 시험 일정을 가져와주는 API
 @app.route('/detailCerti', methods=['POST'])
-def detail_certi():
+def dbData():
     detail_certi = request.form['certi_give']
     data = db.certificate.find_one({'certi': detail_certi}, {'_id': False})
 
-    return jsonify({'result': 'success','data': data})
+    return jsonify({'result': 'success', 'dbData': data})
 
 
 if __name__ == '__main__':
