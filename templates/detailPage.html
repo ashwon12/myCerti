@@ -81,7 +81,7 @@
         border: 4px solid #ddd;
         -webkit-box-shadow: 0 1px 5px rgba(0, 0, 0, .08);
         box-shadow: 0 1px 5px rgba(0, 0, 0, .08);
-        border-radius: 4px;
+        border-radius: 10px;
         width: 95%;
         height: 150px;
         padding: 8px;
@@ -227,27 +227,6 @@
         })
     }
 
-    //TODO: ajax로 바로 통신하는 방법,,,, 시도했으나 실패
-    // function reviewData(certi) {
-    //     $.ajax({
-    //         type: "GET",
-    //         url: 'https://openapi.naver.com/v1/search/blog.json',
-    //         headers : {
-    //             'X-Naver-Client-Id': '1cZPXGnFs7VpBH7STTrV',
-    //             'X-Naver-Client-Secret': 'O6T5Wih5G5',
-    //         },
-    //         params :{
-    //             'query': certi+' 후기',
-    //             'display': '10',
-    //             'start': '1',
-    //             'sort': 'sim',
-    //         },
-    //         data: {},
-    //         success: function (response) {
-    //             alert('리뷰 가져옴!')
-    //         }
-    //     })
-    // }
 
     //TODO: 검색 결과 없을 경우 화면 구현
     var isEmpty = function (value) {
