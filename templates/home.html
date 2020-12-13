@@ -89,7 +89,7 @@
         for (let key of keys) {
             let check = localStorage.getItem(key);
             if (check === 'true') {
-                src = "../static/fill_heart.png "
+                let src = "../static/fill_heart.png "
                 let temp = `<div class="card">
                             <div class="card-text-content ">
                                 <p class="card-head"><b>${key}</b><img class="heart_image" src=${src} ></p>
