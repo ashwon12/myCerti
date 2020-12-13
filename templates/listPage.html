@@ -1,66 +1,6 @@
 {% include './part/head.html' %}
-
-<style>
-
-
-    #title_span {
-        font-size: 42px;
-    }
-
-    .text_container {
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: flex-start;
-        width: 45%;
-        min-height: 20%;
-        margin: 100px 0px 40px 0px;
-    }
-
-    .card_container {
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        width: 45%;
-        min-height: 80%;
-        padding: 8px;
-        margin-bottom: 100px;
-    }
-
-    .card {
-        border-radius: 15px;
-        box-shadow: -1px 2px 4px rgba(0, 0, 0, .25), 1px 1px 3px rgba(0, 0, 0, .1);
-        margin-bottom: 8px;
-        padding: 15px;
-        width: 90%;
-        height: 100px;
-        background-color: white;
-    }
-
-    .card-row {
-        display: -webkit-flex;
-        display: flex;
-    }
-
-    .card-text-content {
-        width: 100%;
-        color: #1F2739;
-    }
-
-    .card-head {
-        width: 100%;
-        font-size: 24px;
-        margin-top: 15px;
-    }
-
-    .heart_image {
-        width: 20px;
-        height: 20px;
-        float: right;
-        margin-left: 5px;
-    }
-
-</style>
+<link rel="stylesheet" href="../static/css/card.css">
+<link rel="stylesheet" href="../static/css/container.css">
 
 <script>
     $(document).ready(function () {
@@ -82,26 +22,49 @@
                     for (let i = 0; i < datas.length; i++) {
                         let data = datas[i]
                         let certi = data['certi']
+                        let src = get_heart(certi)
                         let temp = `<div class="card card-row ">
                                         <div class="card-text-content ">
-                                            <p class="card-head"><b>${certi}</b><img class="heart_image_${i} heart_image" src="../static/basic_heart.png " ></p>
+                                            <p class="card-head"><b>${certi}</b><img class="heart_image_${i} heart_image" src=${src} ></p>
                                             <p class="go_detail" ><img src="../static/arrow.png " width="20" height="20" > Click!</p>
                                         </div>
                                     </div>`
                         $('.card_container').append(temp)
                         go_detail()
-                        click_like(i)
+                        click_heart(i)
                     }
                 }
             }
         })
     }
 
-    function click_like(i) {
+    // 저장된 하트를 가져올 때
+    function get_heart(key) {
+        let check = localStorage.getItem(key);
+        let src
+        if (check === 'true') {
+            src = "../static/fill_heart.png "
+            return src
+        } else {
+            src = "../static/basic_heart.png "
+            return src
+        }
+    }
+
+    // 하트 눌렀을 때
+    function click_heart(i) {
         $(`.heart_image_${i}`).click(function () {
             let p = $(this)
-            console.log(p.parent().text())
-            $(`.heart_image_${i}`).attr("src", "../static/heart.png ")
+            let click = p.parent().text()
+            let check = localStorage.getItem(click);
+
+            if (check === 'true') {
+                $(`.heart_image_${i}`).attr("src", "../static/basic_heart.png ")
+                localStorage.setItem(p.parent().text(), false)
+            } else {
+                $(`.heart_image_${i}`).attr("src", "../static/fill_heart.png ")
+                localStorage.setItem(p.parent().text(), true)
+            }
         });
     }
 
@@ -125,13 +88,6 @@
         </div>
     </div>
     <div class="card_container">
-        <table border="0">
-            <tr>
-                <td>
-
-                </td>
-            </tr>
-        </table>
     </div>
 </div>
 

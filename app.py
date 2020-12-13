@@ -52,7 +52,7 @@ def reviewData():
     }
     params = {
         'query': detail_certis + ' 후기',
-        'display': '5',
+        'display': '6',
         'start': '1',
         'sort': 'sim',
     }
