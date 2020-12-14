@@ -1,5 +1,6 @@
 {% include './part/head.html' %}
 <link rel="stylesheet" href="../static/css/card.css">
+<link rel="stylesheet" href="../static/css/init.css">
 
 <style>
     .up {
@@ -89,7 +90,7 @@
         for (let key of keys) {
             let check = localStorage.getItem(key);
             if (check === 'true') {
-                let src = "../static/fill_heart.png "
+                let src = "../static/img/fill_heart.png "
                 let temp = `<div class="card">
                             <div class="card-text-content ">
                                 <p class="card-head"><b>${key}</b><img class="heart_image" src=${src} ></p>
@@ -101,7 +102,6 @@
             }
             go_detail()
         }
-
         let leng = $('.card_container').children('.card').length
         if(leng == 0){
             $('h3').hide()

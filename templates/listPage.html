@@ -1,4 +1,5 @@
 {% include './part/head.html' %}
+<link rel="stylesheet" href="../static/css/init.css">
 <link rel="stylesheet" href="../static/css/card.css">
 <link rel="stylesheet" href="../static/css/container.css">
 
@@ -18,7 +19,6 @@
             success: function (response) {
                 if (response["result"] === "success") {
                     let datas = response['data']
-
                     for (let i = 0; i < datas.length; i++) {
                         let data = datas[i]
                         let certi = data['certi']
@@ -43,10 +43,10 @@
         let check = localStorage.getItem(key);
         let src
         if (check === 'true') {
-            src = "../static/fill_heart.png "
+            src = "../static/img/fill_heart.png "
             return src
         } else {
-            src = "../static/basic_heart.png "
+            src = "../static/img/basic_heart.png "
             return src
         }
     }
@@ -59,10 +59,10 @@
             let check = localStorage.getItem(click);
 
             if (check === 'true') {
-                $(`.heart_image_${i}`).attr("src", "../static/basic_heart.png ")
+                $(`.heart_image_${i}`).attr("src", "../static/img/basic_heart.png ")
                 localStorage.setItem(p.parent().text(), false)
             } else {
-                $(`.heart_image_${i}`).attr("src", "../static/fill_heart.png ")
+                $(`.heart_image_${i}`).attr("src", "../static/img/fill_heart.png ")
                 localStorage.setItem(p.parent().text(), true)
             }
         });
