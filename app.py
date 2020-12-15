@@ -34,10 +34,19 @@ def detail_page():
 def result_post():
     keyword = request.form['major_give']
 
-    search_result = list(db.certificate.find({'certi': {'$regex': '.*' + keyword + '.*'}}, {'_id': False}))
+    search_result = list(db.certificate.find({'major': {'$all': {'$regex': '.*' + keyword + '.*'}}}, {'_id': False}))
+    # search_result = list(db.certificate.find(
+    #         {
+    #             {'certi': {'$regex': '.*' + keyword + '.*'}},
+    #             # {'major': {'$elemMatch':{'$all': {'$regex': '.*' + keyword + '.*'}}}}
+    #
+    #         }, {'_id': False }))
+
     results = []
     for result in search_result:
         results.append(result)
+
+    print(results)
     return jsonify({'result': 'success', 'data': results})
 
 

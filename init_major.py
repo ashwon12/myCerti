@@ -1,6 +1,4 @@
 import requests
-from bs4 import BeautifulSoup
-from selenium import webdriver
 from pymongo import MongoClient
 
 # mongDB 설정
@@ -14,19 +12,40 @@ def geturl2(majorSeq):
     datas = res.json()
     data1 = datas['dataSearch']['content'][0]['university']
     data2 = datas['dataSearch']['content'][0]['chartData']
-    for major in data1:
-        majorName = major['majorName']
-        print(majorName)
+    majorName=[]
 
-    for cg in data2:
-        category = cg['field']
-        max = 0
-        for et in category:
-            maxtemp = et['data']
-            if float(maxtemp) > max:
-                max = float(maxtemp)
-                majorCate = et['item']
-        print(majorCate)
+    for major in data1:
+        # 전공이름 가져오기
+        majorName.append(major['majorName'])
+
+
+    check=[]
+    if data2[0]:
+        for cg in data2:
+            # 분야 가져오기
+            category = cg['field']
+            max = 0
+            for et in category:
+                maxtemp = et['data']
+                if float(maxtemp) > max:
+                    max = float(maxtemp)
+                    majorCate = et['item']
+            print(majorSeq + "의 전공은 " + majorName[0])
+
+            start = 0
+            end = 2
+            while True:
+                if start > len(majorCate):
+                    break
+                else:
+                    print(majorCate[start:end])
+                    db.certificate.update_many(
+                        {'category': {'$regex': '.*' + majorCate[start:end] + '.*'}},
+                        {
+                            '$push': {'major': {'$each':majorName}}
+                        })
+                    start = end + 1
+                    end = end + 3
 
 
 def getMajorSeq():
@@ -37,7 +56,8 @@ def getMajorSeq():
         data = datas['dataSearch']['content']
         for num in data:
             majorSeq = num['majorSeq']
+            print(majorSeq)
             geturl2(majorSeq)
-            break
+
 
 getMajorSeq()
