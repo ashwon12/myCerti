@@ -1,7 +1,9 @@
+
 .navigation {
     height: 60px;
     background: #02092c;
     width: 100%;
+    margin-bottom: auto;
 }
 
 .brand {

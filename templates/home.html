@@ -1,8 +1,6 @@
 {% include './part/head.html' %}
-<link rel="stylesheet" href="../static/css/nav.css">
 <link rel="stylesheet" href="../static/css/card.css">
 <link rel="stylesheet" href="../static/css/init.css">
-
 
 <style>
     .up {
@@ -11,18 +9,7 @@
         justify-content: center;
         align-items: center;
         width: 90%;
-        min-height: 100%;
-        margin: 200px 0px 40px 0px;
-    }
-
-    .down {
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        width: 90%;
-        padding: 8px;
-        margin-bottom: 100px;
-        align-items: center;
+        margin: 280px auto;
     }
 
     .search_container {
@@ -66,7 +53,83 @@
     .card {
         width: 80%;
     }
+
+
+    .navigation {
+        height: 60px;
+        background: #02092c;
+        width: 100%;
+        margin-bottom: auto;
+    }
+
+    .brand {
+        position: absolute;
+        padding-left: 20px;
+        float: left;
+        line-height: 60px;
+        text-transform: uppercase;
+        font-size: 1.4em;
+    }
+
+    .brand a,
+    .brand a:visited {
+        color: #ffffff;
+        text-decoration: none;
+    }
+
+    .nav-container {
+        max-width: 1000px;
+        margin: 0 auto;
+    }
+
+    nav {
+        float: right;
+    }
+
+    nav ul {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+    }
+
+    nav ul li {
+        float: left;
+        position: relative;
+    }
+
+    nav ul li a,
+    nav ul li a:visited {
+        display: block;
+        padding: 0 20px;
+        line-height: 60px;
+        background: #02092c;
+        color: #ffffff;
+        text-decoration: none;
+    }
+
+    nav ul li a:hover,
+    nav ul li a:visited:hover {
+        background: #2581dc;
+        color: #ffffff;
+    }
+
+    nav ul li a:not(:only-child):after,
+    nav ul li a:visited:not(:only-child):after {
+        padding-left: 4px;
+        content: " ▾";
+    }
+
+    nav ul li ul li {
+        min-width: 190px;
+    }
+
+    nav ul li ul li a {
+        padding: 15px;
+        line-height: 20px;
+    }
+
 </style>
+
 
 <script>
     $(document).ready(function () {
@@ -123,43 +186,43 @@
 </head>
 <body>
 <div id="wrap">
-    <section class="navigation">
+    <div class="navigation">
         <div class="nav-container">
             <div class="brand">
-                <a href="#!">전자백</a>
+                <a href="">전자백</a>
             </div>
             <nav>
                 <ul class="nav-list">
                     <li>
-                        <a href="#!">Home</a>
+                        <a href="http://localhost:5000/">Home</a>
                     </li>
                     <li>
-                        <a href="#!">myCerti</a>
+                        <a href="http://localhost:5000/listPage?major=%EC%BB%B4%ED%93%A8%ED%84%B0">myCerti</a>
                     </li>
                     <li>
-                        <a href="#!">자격증 한눈에보기</a>
+                        <a href="">자격증 한눈에보기</a>
                     </li>
                 </ul>
             </nav>
         </div>
-    </section>
-    <div class="up">
-        <div class="text_container">
-            <h1>What's your Major? 🤔</h1>
-        </div>
-        <section class="search_container">
-            <label for="search-input"></label>
-            <input class="input-lg" id="search-input" placeholder="전공을 입력해주세요"
-                   spellcheck="false" autocorrect="off" autocomplete="off" tabindex="1"><img
-                src="../static/img/search_icon.png " class="search_icon">
-        </section>
-    </div>
-    <div class="down">
-        <h3>myCerti!</h3>
-        <div class="card_container">
+
+        <div class="up">
+            <div class="text_container">
+                <h1>What's your Major? 🤔</h1>
+            </div>
+            <section class="search_container">
+                <label for="search-input"></label>
+                <input class="input-lg" id="search-input" placeholder="전공을 입력해주세요"
+                       spellcheck="false" autocorrect="off" autocomplete="off" tabindex="1"><img
+                    src="../static/img/search_icon.png " class="search_icon">
+            </section>
+
+            <!--    <div class="down">-->
+            <!--        <h3>myCerti!</h3>-->
+            <!--        <div class="card_container">-->
+            <!--        </div>-->
+            <!--    </div>-->
         </div>
     </div>
 </div>
-
 {% include './part/footer.html' %}
-

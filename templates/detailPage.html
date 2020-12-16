@@ -2,10 +2,10 @@
 <link rel="stylesheet" href="../static/css/container.css">
 <link rel="stylesheet" href="../static/css/init.css">
 
-
 <style>
     .text_container {
         width: 55%;
+        margin: 140px auto 40px auto;
     }
 
     .container td {
@@ -17,13 +17,14 @@
     }
 
     .container {
+        margin: 0px auto 100px auto;
         text-align: center;
         overflow: hidden;
-        width: 55%;
+        width: 50%;
         display: table;
         min-height: 80%;
         padding: 8px;
-        margin-bottom: 100px;
+
     }
 
     td, th {
@@ -57,8 +58,8 @@
         justify-content: center;
         align-items: flex-start;
         width: 55%;
-        margin-bottom: 50px;
-        margin-left: 10px;
+        margin: 140px auto 40px auto;
+
     }
 
     .blogcard-d1 {
@@ -121,6 +122,80 @@
     .btn-purple:active {
         -webkit-transform: scale(.9) rotate(-4deg);
         transform: scale(.9) rotate(-4deg);
+    }
+
+
+    .navigation {
+        height: 60px;
+        background: #02092c;
+        width: 100%;
+        margin-bottom: auto;
+    }
+
+    .brand {
+        position: absolute;
+        padding-left: 20px;
+        float: left;
+        line-height: 60px;
+        text-transform: uppercase;
+        font-size: 1.4em;
+    }
+
+    .brand a,
+    .brand a:visited {
+        color: #ffffff;
+        text-decoration: none;
+    }
+
+    .nav-container {
+        max-width: 1000px;
+        margin: 0 auto;
+    }
+
+    nav {
+        float: right;
+    }
+
+    nav ul {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+    }
+
+    nav ul li {
+        float: left;
+        position: relative;
+    }
+
+    nav ul li a,
+    nav ul li a:visited {
+        display: block;
+        padding: 0 20px;
+        line-height: 60px;
+        background: #02092c;
+        color: #ffffff;
+        text-decoration: none;
+    }
+
+    nav ul li a:hover,
+    nav ul li a:visited:hover {
+        background: #2581dc;
+        color: #ffffff;
+    }
+
+    nav ul li a:not(:only-child):after,
+    nav ul li a:visited:not(:only-child):after {
+        padding-left: 4px;
+        content: " ▾";
+    }
+
+    nav ul li ul li {
+        min-width: 190px;
+    }
+
+    nav ul li ul li a {
+        padding: 15px;
+        line-height: 20px;
     }
 
 
@@ -232,27 +307,48 @@
 <body>
 <div id="wrap">
     <meta id="certi" content="{{certi}}">
-    <div class="text_container">
-        <div>
-            <h2><span id="title_span">'{{certi}}'</span> 의<br>시험 일정과 시험 후기를 알려드릴께요! 🙌</h2>
+
+    <div class="navigation">
+        <div class="nav-container">
+            <div class="brand">
+                <a href="">전자백</a>
+            </div>
+            <nav>
+                <ul class="nav-list">
+                    <li>
+                        <a href="http://localhost:5000/">Home</a>
+                    </li>
+                    <li>
+                        <a href="http://localhost:5000/listPage?major=%EC%BB%B4%ED%93%A8%ED%84%B0">myCerti</a>
+                    </li>
+                    <li>
+                        <a href="">자격증 한눈에보기</a>
+                    </li>
+                </ul>
+            </nav>
         </div>
-    </div>
-    <table class="container">
-        <thead>
-        <tr>
-            <th><h4>구분</h4></th>
-            <th><h4>필기접수</h4></th>
-            <th><h4>필기시험</h4></th>
-            <th><h4>필기결과발표</h4></th>
-            <th><h4>실기접수</h4></th>
-            <th><h4>실기시험</h4></th>
-            <th><h4>실기결과발표</h4></th>
-        </tr>
-        </thead>
-        <tbody class="tr_container">
-        </tbody>
-    </table>
-    <div class="blog-container">
+        <div class="text_container">
+            <div>
+                <h2><span id="title_span">'{{certi}}'</span> 의<br>시험 일정과 시험 후기를 알려드릴께요! 🙌</h2>
+            </div>
+        </div>
+        <table class="container">
+            <thead>
+            <tr>
+                <th><h4>구분</h4></th>
+                <th><h4>필기접수</h4></th>
+                <th><h4>필기시험</h4></th>
+                <th><h4>필기결과발표</h4></th>
+                <th><h4>실기접수</h4></th>
+                <th><h4>실기시험</h4></th>
+                <th><h4>실기결과발표</h4></th>
+            </tr>
+            </thead>
+            <tbody class="tr_container">
+            </tbody>
+        </table>
+        <div class="blog-container">
+        </div>
     </div>
 </div>
 

@@ -1,8 +1,137 @@
 {% include './part/head.html' %}
 <link rel="stylesheet" href="../static/css/init.css">
-<link rel="stylesheet" href="../static/css/card.css">
-<link rel="stylesheet" href="../static/css/container.css">
 
+<style>
+
+    .navigation {
+        height: 60px;
+        background: #02092c;
+        width: 100%;
+        margin-bottom: auto;
+    }
+
+    .brand {
+        position: absolute;
+        padding-left: 20px;
+        float: left;
+        line-height: 60px;
+        text-transform: uppercase;
+        font-size: 1.4em;
+    }
+
+    .brand a,
+    .brand a:visited {
+        color: #ffffff;
+        text-decoration: none;
+    }
+
+    .nav-container {
+        max-width: 1000px;
+        margin: 0 auto;
+    }
+
+    nav {
+        float: right;
+    }
+
+    nav ul {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+    }
+
+    nav ul li {
+        float: left;
+        position: relative;
+    }
+
+    nav ul li a,
+    nav ul li a:visited {
+        display: block;
+        padding: 0 20px;
+        line-height: 60px;
+        background: #02092c;
+        color: #ffffff;
+        text-decoration: none;
+    }
+
+    nav ul li a:hover,
+    nav ul li a:visited:hover {
+        background: #2581dc;
+        color: #ffffff;
+    }
+
+    nav ul li a:not(:only-child):after,
+    nav ul li a:visited:not(:only-child):after {
+        padding-left: 4px;
+        content: " ▾";
+    }
+
+    nav ul li ul li {
+        min-width: 190px;
+    }
+
+    nav ul li ul li a {
+        padding: 15px;
+        line-height: 20px;
+    }
+
+    #title_span {
+        font-size: 42px;
+    }
+
+    .text_container {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: flex-start;
+        width: 45%;
+        min-height: 20%;
+        margin: 140px auto 40px auto;
+    }
+
+    .card_container {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        width: 45%;
+        min-height: 80%;
+        padding: 8px;
+        align-items: center;
+        margin: 10px auto 300px auto;
+    }
+
+    .card {
+        display: flex;
+        justify-content: center;
+        border-radius: 15px;
+        box-shadow: -1px 2px 4px rgba(0, 0, 0, .25), 1px 1px 3px rgba(0, 0, 0, .1);
+        margin-bottom: 8px;
+        padding: 15px;
+        width: 95%;
+        height: 100px;
+        background-color: white;
+    }
+
+    .card-text-content {
+        width: 100%;
+        color: #1F2739;
+    }
+
+    .card-head {
+        width: 100%;
+        font-size: 24px;
+        margin-top: 12px;
+    }
+
+    .heart_image {
+        width: 20px;
+        height: 20px;
+        float: right;
+        margin-left: 5px;
+    }
+
+</style>
 <script>
     $(document).ready(function () {
         get_data()
@@ -19,11 +148,12 @@
             success: function (response) {
                 if (response["result"] === "success") {
                     let datas = response['data']
+                    shuffle(datas)
                     for (let i = 0; i < datas.length; i++) {
                         let data = datas[i]
                         let certi = data['certi']
                         let src = get_heart(certi)
-                        let temp = `<div class="card card-row ">
+                        let temp = `<div class="card">
                                         <div class="card-text-content ">
                                             <p class="card-head"><b>${certi}</b><img class="heart_image_${i} heart_image" src=${src} ></p>
                                             <p class="go_detail" ><img src="../static/img/arrow.png " width="20" height="20" > Click!</p>
@@ -76,18 +206,48 @@
         });
     }
 
+    function shuffle(a) {
+        var j, x, i;
+        for (i = a.length; i; i -= 1) {
+            j = Math.floor(Math.random() * i);
+            x = a[i - 1];
+            a[i - 1] = a[j];
+            a[j] = x;
+        }
+    }
+
 </script>
 
 </head>
 <body>
 <div id="wrap">
     <meta id="major" content="{{major}}">
-    <div class="text_container">
-        <div>
-            <h2><span id="title_span">'{{major}}'</span> 와<br>관련된 자격증을 보여드릴게요! 💡</h2>
+    <div class="navigation">
+        <div class="nav-container">
+            <div class="brand">
+                <a href="">전자백</a>
+            </div>
+            <nav>
+                <ul class="nav-list">
+                    <li>
+                        <a href="http://localhost:5000/">Home</a>
+                    </li>
+                    <li>
+                        <a href="http://localhost:5000/listPage?major=%EC%BB%B4%ED%93%A8%ED%84%B0">myCerti</a>
+                    </li>
+                    <li>
+                        <a href="">자격증 한눈에보기</a>
+                    </li>
+                </ul>
+            </nav>
         </div>
-    </div>
-    <div class="card_container">
+        <div class="text_container">
+            <div>
+                <h2><span id="title_span">'{{major}}'</span> 와<br>관련된 자격증을 보여드릴게요! 💡</h2>
+            </div>
+        </div>
+        <div class="card_container">
+        </div>
     </div>
 </div>
 
