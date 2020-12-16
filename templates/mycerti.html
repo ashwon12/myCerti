@@ -1,59 +1,7 @@
 {% include './part/head.html' %}
-<link rel="stylesheet" href="../static/css/card.css">
 <link rel="stylesheet" href="../static/css/init.css">
 
 <style>
-    .up {
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        width: 90%;
-        margin: 280px auto;
-    }
-
-    .search_container {
-        display: flex;
-        width: 45%;
-        font-size: 18px;
-        margin: 30px auto 0;
-        background-color: #fff;
-        border-radius: 30px;
-    }
-
-    .input-lg {
-        height: 44px;
-        padding: 10px 5px;
-        margin-left: 33px;
-        font-size: 18px;
-        line-height: 1.3333333;
-        background-color: transparent;
-        border: none;
-        border-radius: 25px;
-        width: 90%;
-    }
-
-    .search_icon {
-        margin-top: 10px;
-        margin-right: 20px;
-        width: 40px;
-        height: 40px;
-    }
-
-    .card_container {
-        margin-bottom: 0;
-        align-items: center;
-        display: flex;
-        flex-direction: column;
-        flex-wrap: wrap;
-        justify-content: space-around;
-        align-content: space-around;
-    }
-
-    .card {
-        width: 80%;
-    }
-
 
     .navigation {
         height: 60px;
@@ -128,26 +76,66 @@
         line-height: 20px;
     }
 
-</style>
+    #title_span {
+        font-size: 42px;
+    }
 
+    .text_container {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: flex-start;
+        width: 45%;
+        min-height: 20%;
+        margin: 140px auto 40px auto;
+    }
+
+    .card_container {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        width: 45%;
+        min-height: 80%;
+        padding: 8px;
+        align-items: center;
+        margin: 10px auto 300px auto;
+    }
+
+    .card {
+        display: flex;
+        justify-content: center;
+        border-radius: 15px;
+        box-shadow: -1px 2px 4px rgba(0, 0, 0, .25), 1px 1px 3px rgba(0, 0, 0, .1);
+        margin-bottom: 8px;
+        padding: 15px;
+        width: 95%;
+        height: 100px;
+        background-color: white;
+    }
+
+    .card-text-content {
+        width: 100%;
+        color: #1F2739;
+    }
+
+    .card-head {
+        width: 100%;
+        font-size: 24px;
+        margin-top: 12px;
+    }
+
+    .heart_image {
+        width: 20px;
+        height: 20px;
+        float: right;
+        margin-left: 5px;
+    }
+
+</style>
 <script>
     $(document).ready(function () {
         load_mycerti()
-        $("#search-input").keydown(function (key) {
-            if (key.keyCode === 13) {
-                search_enter()
-            }
-        });
-    });
-
-    function search_enter() {
-        let input = $("#search-input").val()
-        if (input === '') {
-            alert("값을 입력해주세요")
-        } else {
-            window.location.href = '/listPage?major=' + input
-        }
-    }
+    })
 
     function load_mycerti() {
         let keys = Object.keys(localStorage);
@@ -172,6 +160,37 @@
         }
     }
 
+
+    // 저장된 하트를 가져올 때
+    function get_heart(key) {
+        let check = localStorage.getItem(key);
+        let src
+        if (check === 'true') {
+            src = "../static/img/fill_heart.png "
+            return src
+        } else {
+            src = "../static/img/basic_heart.png "
+            return src
+        }
+    }
+
+    // 하트 눌렀을 때
+    function click_heart(i) {
+        $(`.heart_image_${i}`).click(function () {
+            let p = $(this)
+            let click = p.parent().text()
+            let check = localStorage.getItem(click);
+
+            if (check === 'true') {
+                $(`.heart_image_${i}`).attr("src", "../static/img/basic_heart.png ")
+                localStorage.setItem(p.parent().text(), false)
+            } else {
+                $(`.heart_image_${i}`).attr("src", "../static/img/fill_heart.png ")
+                localStorage.setItem(p.parent().text(), true)
+            }
+        });
+    }
+
     function go_detail() {
         $(".go_detail").click(function () {
             let p = $(this)
@@ -180,11 +199,13 @@
         });
     }
 
+
 </script>
 
 </head>
 <body>
 <div id="wrap">
+    <meta id="major" content="{{major}}">
     <div class="navigation">
         <div class="nav-container">
             <div class="brand">
@@ -196,7 +217,7 @@
                         <a href="http://localhost:5000/">Home</a>
                     </li>
                     <li>
-                        <a href="http://localhost:5000/myCerti">myCerti</a>
+                        <a href="http://localhost:5000/listPage?major=%EC%BB%B4%ED%93%A8%ED%84%B0">myCerti</a>
                     </li>
                     <li>
                         <a href="">자격증 한눈에보기</a>
@@ -204,24 +225,14 @@
                 </ul>
             </nav>
         </div>
-
-        <div class="up">
-            <div class="text_container">
-                <h1>What's your Major? 🤔</h1>
+        <div class="text_container">
+            <div>
+                <h2>하트를 눌른<br>자격증을 보여드릴게요!💖</h2>
             </div>
-            <section class="search_container">
-                <label for="search-input"></label>
-                <input class="input-lg" id="search-input" placeholder="전공을 입력해주세요"
-                       spellcheck="false" autocorrect="off" autocomplete="off" tabindex="1"><img
-                    src="../static/img/search_icon.png " class="search_icon">
-            </section>
-
-            <!--    <div class="down">-->
-            <!--        <h3>myCerti!</h3>-->
-            <!--        <div class="card_container">-->
-            <!--        </div>-->
-            <!--    </div>-->
+        </div>
+        <div class="card_container">
         </div>
     </div>
 </div>
+
 {% include './part/footer.html' %}

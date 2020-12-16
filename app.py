@@ -28,6 +28,11 @@ def detail_page():
     certi = request.args.get('certi')
     return render_template('detailPage.html', certi=certi)
 
+# 저장한 자격증 모아보기
+@app.route('/myCerti')
+def mycerti_page():
+    return render_template('mycerti.html')
+
 
 # DB에서 검색 결과를 가져오는 API
 @app.route('/result', methods=['POST'])
