@@ -1,10 +1,10 @@
 # CwithM ( Certificate WITH Major )
 
 ##  ✨description
-![1](https://user-images.githubusercontent.com/55980680/102503401-0add2e80-40c3-11eb-93e7-f8ad7e93d47f.png)  |   ![2](https://user-images.githubusercontent.com/55980680/102503657-4a0b7f80-40c3-11eb-8e11-af3cb30fcdb8.png) | 
-:-------------------------:|:-------------------------:
-![1]((https://user-images.githubusercontent.com/55980680/102504006-a9698f80-40c3-11eb-996a-8b6470a01a3d.png) |  ![2]((https://user-images.githubusercontent.com/55980680/102504135-cef69900-40c3-11eb-97f8-e2966c0c090a.png)
-:-------------------------:|:-------------------------:
+|![1](https://user-images.githubusercontent.com/55980680/102503401-0add2e80-40c3-11eb-93e7-f8ad7e93d47f.png)  |   ![2](https://user-images.githubusercontent.com/55980680/102503657-4a0b7f80-40c3-11eb-8e11-af3cb30fcdb8.png) | 
+|:-------------------------:|:-------------------------:|
+|![3](https://user-images.githubusercontent.com/55980680/102504006-a9698f80-40c3-11eb-996a-8b6470a01a3d.png) |  ![4](https://user-images.githubusercontent.com/55980680/102504135-cef69900-40c3-11eb-97f8-e2966c0c090a.png)|
+
 
 > 자신의 전공을 입력하면 관련된 자격증을 보여주는 웹사이트
 >
