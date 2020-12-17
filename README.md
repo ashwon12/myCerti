@@ -24,7 +24,15 @@
 -  Back : python , flask , ajax
 -  DataBase : NoSQL, Selenium, BeautifulSoup, ET
 
+- 사용한 API
+  1. 네이버, 블로그&카페 검색 API 
+  2. [큐넷, 국가기술자격 자격증 정보](http://q-net.or.kr/crf005.do?id=crf00501&gSite=Q&gId=) (crawling)
+  3. [커리어넷, 전국 대학교 학과 정보](https://www.career.go.kr/cnet/front/openapi/openApiMajorCenter.do)
+  4. [공공데이터포털, 국가자격 종목 목록 정보](https://data.go.kr/tcs/dss/selectApiDataDetailView.do?publicDataPk=15003024)
+
 
 <br>
+
+
 
 
