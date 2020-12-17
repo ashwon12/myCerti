@@ -11,6 +11,8 @@
 > 관심있는 자격증을 하트를 눌러서 따로 관리 할 수 있다.
 >
 > **프로젝트 기간 2020.11.04 ~ 2020.12.16**
+>
+> [notion-blog](https://www.notion.so/CwithM-Certificate-WITH-Major-2e560ee20b0c4d5f8553af554d1a211a)
 
 <br>
 
@@ -24,7 +26,7 @@
 
 ## 📌 Technology Stack
 
--  Front : html, css, javascript, jQuery
+-  Front : html, css, javascript, jQuery, local storage
 -  Back : python , flask , ajax
 -  DataBase : NoSQL, Selenium, BeautifulSoup, ET
 
